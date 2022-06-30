@@ -1,0 +1,10 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    vector<int>a={8, 10, 20, 80, 100, 200, 400, 500, 3, 2, 1};
+    int n=a.size();
+    vector<int>::iterator it=is_sorted_until(a.begin(),a.end());
+    cout<<"Index of 1st unsorted element:"<<(it-a.begin())<<endl<<"The element is:"<<a[it-a.begin()];
+    return 0;
+}
