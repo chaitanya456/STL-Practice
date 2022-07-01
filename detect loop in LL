@@ -1,0 +1,99 @@
+#include<bits/stdc++.h>
+using namespace std;
+void reverse(struct node *head);
+void func(struct node *head,int pos);
+void print(struct node *head);
+struct node *ins(int data);
+void detectLoop(struct node *head);
+struct node
+{
+    int data;
+    struct node * next;
+};
+struct node *ins(int data)
+{
+    struct node *t=(struct node *)malloc(sizeof(struct node));
+    t->data=data;
+    t->next=NULL;
+    return t;
+}
+void print(struct node *head)
+{
+    while(head)
+    {
+        cout<<head->data<<"->";
+        head=head->next;
+    }
+}
+void func(struct node *head,int pos)
+{
+    int i=0;
+    struct node *p=head;
+    while(head && i<pos)
+    {
+        head=head->next;
+        i++;
+    }
+    if(!head)
+    return;
+    while(head)
+    {
+        p=p->next;
+        head=head->next;
+    }
+    cout<<"Nth node from the end of the linked list:\t"<<p->data<<endl;
+}
+void reverse(struct node *head)
+{
+    struct node *cur=head,*prev=NULL;
+    while(cur)
+    {
+        struct node *n=cur->next;
+        cur->next=prev;
+        prev=cur;
+        cur=n;
+    }
+    while(prev)
+    {
+        cout<<prev->data<<"->";
+        prev=prev->next;
+    }
+}
+void detectLoop(struct node *head)
+{
+    bool b=0;
+    struct node *f=head;
+    struct node *s=head;
+    while(f && s && s->next)
+    {
+        s=s->next->next;
+        f=f->next;
+        if(f==s)
+        {
+          b=1;
+          break;
+        }
+    }
+    if(b)
+    cout<<"Loop Found";
+    else cout<<"No Loop Found";
+    return;
+}
+int main()
+{
+    struct node * head=ins(1);
+    head->next=ins(2);
+    head->next->next=ins(3);
+    head->next->next->next=ins(4);
+    //cout<<"Current Linked List:";
+    //print(head);
+    //cout<<endl;
+    head->next->next->next->next=head;//loop is here.
+    detectLoop(head);
+    // cout<<"Enter Position:\t";
+    // cin>>pos;
+    // func(head,pos);
+    // cout<<"Reversing a Linked list:\t";
+    // reverse(head);
+    return 0;
+}
