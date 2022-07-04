@@ -1,0 +1,6 @@
+        string x=s1+s1;
+        if(s1.length()!=s2.length())
+        return 0;
+        if(x.find(s2)!=string::npos)
+        return 1;
+        else return 0;
