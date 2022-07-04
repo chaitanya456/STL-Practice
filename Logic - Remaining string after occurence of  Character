@@ -1,0 +1,15 @@
+string printString(string &S, char ch, int co)
+	{
+	  string res="";
+	  int i,n=S.length(),c=0;
+	  if(count(S.begin(),S.end(),ch)<co)
+	  return "Empty string";
+	  for(i=1;i<n && c<co;i++)
+	  {
+	      if(S[i]==ch)
+	      c++;
+	  }
+	  for(;i<n;i++)
+	  res+=S[i];
+	  return res;
+	}
